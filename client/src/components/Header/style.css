@@ -1,6 +1,6 @@
 .menu {
 	display:flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   list-style-type: none;
   height: 100px;
