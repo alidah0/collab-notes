@@ -1,18 +1,13 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
-
-const db = require('./database/db_connection');
 
 const app = express();
+
+const db = require('./database/db_connection');
+const middlewares = require('./services/middlewares');
 
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || 4000);
 
-const middlewares = [
-  cookieParser(),
-  express.json(),
-  express.urlencoded({ extended: false }),
-];
 app.use(middlewares);
 
 db
