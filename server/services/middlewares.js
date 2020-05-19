@@ -16,7 +16,7 @@ const middlewares = [
   express.urlencoded({ extended: false }),
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: ['secretcookie'],
+    keys: [process.env.Secret_Cookie],
   }),
   cookieParser(),
   passport.initialize(),
