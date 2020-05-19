@@ -16,6 +16,7 @@ module.exports = {
   rules: { 
      // disables the windows/unix linebreak checks for anyone who will have to use windows
     "linebreak-style": 0,
+    "no-underscore-dangle": 'off',
     "arrow-body-style": ["error", "as-needed"],
     // configure the prettier plugin
     "prettier/prettier": [
