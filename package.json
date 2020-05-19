@@ -22,7 +22,6 @@
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
-    "cores": "^0.8.5",
     "cors": "^2.8.5",
     "env2": "^2.2.2",
     "express": "^4.17.1",
