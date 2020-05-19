@@ -7,6 +7,7 @@ const middlewares = require('./services/middlewares');
 
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || 4000);
+require('./services/passport');
 
 app.use(middlewares);
 
