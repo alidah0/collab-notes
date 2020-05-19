@@ -6,11 +6,11 @@
 
 ## User Stories:
 user can ..
-1- sign up with Google
-2- create boards and save it in the DB.
-3- access any board any time with board name
-4- post notes to the board in real-time
-5- many people can share on board and collaborate 
+- sign up with Google
+- create boards and save it in the DB.
+- access any board any time with board name
+- post notes to the board in real-time
+- many people can share one board and collaborate
 
 ## Tech-stack
 

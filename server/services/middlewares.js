@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
+const router = require('../router');
 
 const middlewares = [
   cors({
@@ -20,6 +21,7 @@ const middlewares = [
   cookieParser(),
   passport.initialize(),
   passport.session(),
+  router,
 ];
 
 module.exports = middlewares;
