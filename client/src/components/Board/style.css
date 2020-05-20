@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  background-color: rgb(228, 228, 228);  /* background-color: #0d0c12; */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  padding-bottom: 100px;
+  margin-top: -30px;
+}
+
+.App-header {
+  margin-top: 80px;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.trash-can {
+  padding-right: 10px;
+  width: 180px;
+  margin-top: 22px;
+}

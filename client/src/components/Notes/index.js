@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const Notes = (props) => {
   const { colour, title, content, key, onClick, onDragStart } = props;

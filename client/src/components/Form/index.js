@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const Form = ({ createPostit }) => {
   const [data, setData] = useState({
@@ -14,7 +15,7 @@ const Form = ({ createPostit }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (data.title === '' || data.content === '') {
+    if (data.content === '' || data.title === '') {
       setData({ errorMessage: 'All fields are required' });
     } else {
       createPostit(ranCol, data.title, data.content);
@@ -43,19 +44,17 @@ const Form = ({ createPostit }) => {
   return (
     <div>
       <form className="form">
-        <h2>Add Post-it Note</h2>
         <p>{data.errorMessage}</p>
-
         <input
           type="text"
-          placeholder="Title (required*)"
+          placeholder="Title"
           value={data.title}
           name="title"
           onChange={(e) => handleFormInput(e)}
         />
 
         <textarea
-          placeholder="Extra Notes"
+          placeholder="Details about the Notes"
           value={data.content}
           name="content"
           onChange={(e) => handleFormInput(e)}
