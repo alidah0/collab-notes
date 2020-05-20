@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './style.css';
 
 const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
-  console.log(profileIMG);
   const handleLogoutClick = () => {
     window.open('http://localhost:4000/api/logout', '_self');
     handleNotAuthenticated();

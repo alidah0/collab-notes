@@ -25,6 +25,7 @@ const Join = () => {
       });
   }, []);
   const storeBoard = async (e) => {
+    console.log('this is name and board from join', user.username, board);
     const owner = user.username;
     if (!board) {
       e.preventDefault();
@@ -66,7 +67,7 @@ const Join = () => {
 
             <Link
               onClick={storeBoard}
-              to={`/chat?name=${user.username}&board=${board}`}
+              to={`/board?nameq=${user.username}&boardname=${board}`}
             >
               <button className="btn" type="button">
                 Access or create
