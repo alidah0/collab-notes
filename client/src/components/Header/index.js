@@ -5,7 +5,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-const Header = ({ handleNotAuthenticated, authenticate }) => {
+const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
+  console.log(profileIMG);
   const handleLogoutClick = () => {
     window.open('http://localhost:4000/api/logout', '_self');
     handleNotAuthenticated();
@@ -17,10 +18,17 @@ const Header = ({ handleNotAuthenticated, authenticate }) => {
   return (
     <ul className="menu">
       <li>
-        <Link to="/">Home</Link>
+        <Link className="link" to="/">
+          Home
+        </Link>
       </li>
       {authenticate ? (
-        <li onClick={handleLogoutClick}>Logout</li>
+        <div className="wrapp">
+          <li onClick={handleLogoutClick}>
+            Logout
+            <img className="profile" src={profileIMG} alt="profile" />
+          </li>
+        </div>
       ) : (
         <li onClick={handleSignInClick}>Login</li>
       )}

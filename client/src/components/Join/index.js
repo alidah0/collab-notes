@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header';
+import './style.css';
 
 const Join = () => {
   const [board, setBoard] = useState('');
   const [user, setUser] = useState('');
+  const [profilePic, setProfilePic] = useState('');
   const [authenticate, setAuthenticate] = useState(false);
 
   useEffect(() => {
@@ -16,6 +18,7 @@ const Join = () => {
       .then((res) => {
         setAuthenticate(true);
         setUser(res.data.user);
+        setProfilePic(res.data.user.picture);
       })
       .catch(() => {
         setAuthenticate(false);
@@ -41,15 +44,18 @@ const Join = () => {
       <Header
         authenticate={authenticate}
         handleNotAuthenticated={handleNotAuthenticated}
+        profileIMG={profilePic}
       />
       <div>
         {!authenticate ? (
-          <h1>Welcome! Sign in to join a Board</h1>
+          <h1 className="titles">Welcome! Sign in to join a Board</h1>
         ) : (
-          <div>
-            <h1>You are in!</h1>
-            <h1>Welcome {user.username}!</h1>
-            <h1 className="heading">Join</h1>
+          <div className="join-wraper">
+            <div className="titles">
+              <h1>You are in!</h1>
+              <h1>Welcome {user.username}!</h1>
+            </div>
+            <br />
             <div>
               <input
                 placeholder="Enter the Board name"
@@ -62,7 +68,9 @@ const Join = () => {
               onClick={storeBoard}
               to={`/chat?name=${user.username}&board=${board}`}
             >
-              <button type="button">Access or create board</button>
+              <button className="btn" type="button">
+                Access or create
+              </button>
             </Link>
           </div>
         )}
