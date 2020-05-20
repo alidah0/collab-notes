@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from 'prop-types';
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 const Header = ({ handleNotAuthenticated, authenticate }) => {
@@ -17,8 +17,7 @@ const Header = ({ handleNotAuthenticated, authenticate }) => {
   return (
     <ul className="menu">
       <li>
-        Home
-        {/* <Link to="/">Home</Link> */}
+        <Link to="/">Home</Link>
       </li>
       {authenticate ? (
         <li onClick={handleLogoutClick}>Logout</li>
