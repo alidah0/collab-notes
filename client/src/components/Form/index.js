@@ -72,7 +72,7 @@ const Form = ({ createPostit }) => {
             className="mainbtn"
             onClick={(e) => onSubmit(e)}
           >
-            Add Post-it
+            Add Note
           </button>
         </div>
       </form>

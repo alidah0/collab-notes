@@ -1,7 +1,7 @@
 const users = [];
 
-const addUser = ({ id, nameq, board }) => {
-  const user = { id, nameq, board };
+const addUser = ({ id, nameq, boardname }) => {
+  const user = { id, nameq, boardname };
 
   users.push(user);
 
@@ -14,6 +14,7 @@ const removeUser = (id) => {
   return index !== -1 && users.splice(index, 1)[0];
 };
 
-const getUsersInRoom = (board) => users.filter((user) => user.board === board);
+const getUsersInRoom = (boardname) =>
+  users.filter((user) => user.boardname === boardname);
 
 module.exports = { addUser, removeUser, getUsersInRoom };

@@ -27,22 +27,22 @@ const server = app.listen(app.get('port'), () =>
 const io = require('socket.io')(server);
 
 io.on('connect', (socket) => {
-  socket.on('join', async ({ nameq, board }, callback) => {
-    const { error, user } = addUser({ id: socket.id, nameq, board });
+  socket.on('join', async ({ nameq, boardname }, callback) => {
+    const { error, user } = addUser({ id: socket.id, nameq, boardname });
 
     if (error) return callback(error);
 
-    await Board.find({ title: board }, (err, rows) => {
+    await Board.find({ title: boardname }, (err, rows) => {
       if (err) {
         console.log('eroor');
       }
-      socket.join(user.board);
+      socket.join(user.boardname);
 
       socket.broadcast
-        .to(user.board)
+        .to(user.boardname)
         .emit('message', { text: `${user.nameq} has joined!` });
-      io.to(user.board).emit('boardData', {
-        users: getUsersInRoom(user.board),
+      io.to(user.boardname).emit('boardData', {
+        userss: getUsersInRoom(user.boardname),
         data: rows[0].notes,
       });
     });
