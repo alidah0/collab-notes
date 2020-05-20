@@ -5,18 +5,18 @@ const passport = require('passport');
 
 const Board = require('../database/models/Board');
 
-router.post('/addroom', async (req, res) => {
-  const { room, nameuser } = req.body;
-  Board.findOne({ title: room }).then((existingRoom) => {
-    if (existingRoom) {
-      res.json({ msg: 'room is existed you are in' });
+router.post('/addboard', async (req, res) => {
+  const { board, owner } = req.body;
+  Board.findOne({ title: board }).then((existingBoard) => {
+    if (existingBoard) {
+      res.json({ msg: 'Board is existed you are in' });
     } else {
       new Board({
-        title: room,
-        owner: nameuser,
+        title: board,
+        owner,
       })
         .save()
-        .then(() => res.status(201).json({ msg: 'room successfully created' }))
+        .then(() => res.status(201).json({ msg: 'Board successfully created' }))
         .catch((err) => {
           res.status(400).json({
             Error: err,

@@ -1,10 +1,16 @@
 import React from 'react';
-import Header from './components/Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Board from './components/Board';
+import Join from './components/Join';
+import './App.css';
 
 function App() {
   return (
     <div>
-      <Header />
+      <Router>
+        <Route path="/" exact component={Join} />
+        <Route path="/board" component={Board} />
+      </Router>
     </div>
   );
 }
