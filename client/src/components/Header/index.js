@@ -39,6 +39,7 @@ const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
 Header.propTypes = {
   authenticate: PropTypes.bool.isRequired,
   handleNotAuthenticated: PropTypes.func.isRequired,
+  profileIMG: PropTypes.string.isRequired,
 };
 
 export default Header;
