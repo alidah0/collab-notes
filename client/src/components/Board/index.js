@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import PropTypes from 'prop-types';
 import Form from '../Form';
 import Notes from '../Notes';
-
+import EditForm from '../EditForm';
 import Trash from '../../assets/trash.svg';
 import './style.css';
 
@@ -13,7 +13,7 @@ const ENDPOINT = 'http://localhost:4000/';
 
 const Board = ({ location }) => {
   const [name, setName] = useState('');
-  const [board, setBoard] = useState('aliroom');
+  const [board, setBoard] = useState('');
   const [notes, setNotes] = useState([
     {
       title: 'think about relish',
@@ -28,34 +28,30 @@ const Board = ({ location }) => {
       key: '456k$%6lMy45',
     },
   ]);
-  // const [editForm, setEditForm] = useState(false);
+  const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
-  // const [users, setUsers] = useState('');
+  const [users, setUsers] = useState('');
   useEffect(() => {
     const { nameq, boardname } = queryString.parse(location.search);
     socket = io(ENDPOINT);
-    setName(nameq);
     setBoard(boardname);
+    setName(nameq);
 
-    // window.history.pushState({}, document.title, '/');
+    window.history.pushState({}, document.title, '/');
 
-    socket.emit('join', { nameq, board }, (error) => {
+    socket.emit('join', { nameq, boardname }, (error) => {
+      setBoard(boardname);
       if (error) {
         alert(error);
       }
     });
-    return () => {
-      socket.emit('disconnect');
-      socket.off();
-    };
   }, [location.search, board]);
 
   useEffect(() => {
-    // socket.on('boardData', ({ users, data }) => {
-    //   console.log(users);
-    //   setUsers(users);
-    //   setNotes(data);
-    // });
+    socket.on('boardData', ({ userss, data }) => {
+      setUsers(userss);
+      setNotes(data);
+    });
 
     socket.on('createPost', (oldNotes) => {
       setNotes(oldNotes);
@@ -66,7 +62,12 @@ const Board = ({ location }) => {
     socket.on('update', (oldNotes) => {
       setNotes(oldNotes);
     });
-  }, [notes]);
+    return () => {
+      socket.emit('disconnect');
+      // returned when a user disconnects
+      socket.off();
+    };
+  }, [notes, users]);
 
   const createPostit = (colour, title, content) => {
     const oldNotes = [...notes];
@@ -93,21 +94,21 @@ const Board = ({ location }) => {
     });
     setNotes(newNotesArray);
     setNotesToEdit(editedNote);
-    // setEditForm(true);
+    setEditForm(true);
   };
 
-  // const updatePostIt = (colour, title, content) => {
-  //   const oldNotes = [...notes];
-  //   const editedNote = notesToEdit;
-  //   editedNote.colour = colour;
-  //   editedNote.title = title;
-  //   editedNote.content = content;
-  //   editedNote.key = title + Math.random();
-  //   oldNotes.push(editedNote);
-  //   socket.emit('update', { board, oldNotes });
-  //   setNotes(oldNotes);
-  //   setEditForm(false);
-  // };
+  const updatePostIt = (colour, title, content) => {
+    const oldNotes = [...notes];
+    const editedNote = notesToEdit;
+    editedNote.colour = colour;
+    editedNote.title = title;
+    editedNote.content = content;
+    editedNote.key = title + Math.random();
+    oldNotes.push(editedNote);
+    socket.emit('update', { board, oldNotes });
+    setNotes(oldNotes);
+    setEditForm(false);
+  };
 
   const onDragStart = (key) => {
     const oldNotes = [...notes];
@@ -153,11 +154,23 @@ const Board = ({ location }) => {
         .reverse()}
     </div>
   );
+  let editScreen;
+  if (editForm) {
+    editScreen = (
+      <EditForm
+        colour={notesToEdit.colour}
+        title={notesToEdit.title}
+        content={notesToEdit.content}
+        key={notesToEdit.key}
+        editNote={updatePostIt}
+      />
+    );
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Collab Notes</h1>
+        <h1 className="app-title">Collab Notes</h1>
         <div className="wrapper">
           <Form createPostit={createPostit} />
         </div>
@@ -172,6 +185,7 @@ const Board = ({ location }) => {
         </div>
       </header>
       <ul>{renderNotes}</ul>
+      {editScreen}
     </div>
   );
 };
