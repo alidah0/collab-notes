@@ -40,7 +40,7 @@ io.on('connect', (socket) => {
 
       socket.broadcast
         .to(user.boardname)
-        .emit('message', { text: `${user.nameq} has joined!` });
+        .emit('notification', `${user.nameq} has joined!`);
       io.to(user.boardname).emit('boardData', {
         userss: getUsersInRoom(user.boardname),
         data: rows[0].notes,
@@ -67,15 +67,18 @@ io.on('connect', (socket) => {
     });
   });
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', async () => {
     const user = removeUser(socket.id);
     if (user) {
-      io.to(user.board).emit('message', {
-        text: `${user.nameq} has left.`,
-      });
-      io.to(user.board).emit('boardData', {
-        room: user.board,
-        users: getUsersInRoom(user.board),
+      io.to(user.boardname).emit('notification', `${user.nameq} has left.`);
+      await Board.find({ title: user.boardname }, (err, rows) => {
+        if (err) {
+          console.log('eroor');
+        }
+        io.to(user.boardname).emit('boardData', {
+          userss: getUsersInRoom(user.boardname),
+          data: rows[0].notes,
+        });
       });
     }
   });

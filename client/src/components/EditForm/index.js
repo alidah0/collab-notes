@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-const UpdateForm = ({ colour, title, content, key, editNote }) => {
+const UpdateForm = ({ colour, title, content, editNote }) => {
   const [data, setData] = useState({
     colour,
     title,
@@ -36,10 +36,9 @@ const UpdateForm = ({ colour, title, content, key, editNote }) => {
           <br />
           Update Extra Notes:
           <br />
-          <input
-            type="text"
+          <textarea
             className="textfield"
-            placeholder="Content"
+            placeholder="content"
             name="content"
             value={data.content}
             onChange={(e) => setData({ ...data, content: e.target.value })}
@@ -61,7 +60,6 @@ const UpdateForm = ({ colour, title, content, key, editNote }) => {
 UpdateForm.propTypes = {
   colour: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   editNote: PropTypes.func.isRequired,
 };

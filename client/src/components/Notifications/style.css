@@ -1,0 +1,13 @@
+.notify{
+  padding: 26px;
+  background-color: rgba(18, 222, 87, 0.83);
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  border-radius: 4px;
+  font-family: Helvetica, Arial, sans-serif;
+  transform: translateX(0);
+  transition: transform 4s;
+  margin-top: 35px;
+
+}
