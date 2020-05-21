@@ -34,8 +34,6 @@ const Join = () => {
       .post('/addboard', { board, owner })
       .then((res) => console.log(res.data.msg))
       .catch(null);
-    // clear state to clear the input
-    // redirect to chat component to start work
   };
 
   const handleNotAuthenticated = () => setAuthenticate(false);
