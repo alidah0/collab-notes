@@ -5,7 +5,11 @@ import './style.css';
 function Notifications({ text }) {
   return (
     <div>
-      <p className="notify">{text}</p>
+      {text.map((p) => (
+        <p className="notify" key={p}>
+          {p}
+        </p>
+      ))}
     </div>
   );
 }
