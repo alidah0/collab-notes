@@ -32,7 +32,7 @@ const Board = ({ location }) => {
   const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState('');
-  const [notifyText, setNotifyText] = useState('');
+  const [notifyText, setNotifyText] = useState([]);
 
   useEffect(() => {
     const { nameq, boardname } = queryString.parse(location.search);
@@ -54,7 +54,10 @@ const Board = ({ location }) => {
 
   useEffect(() => {
     socket.on('notification', (text) => {
-      setNotifyText(text);
+      setNotifyText([...notifyText, text]);
+      setTimeout(() => {
+        setNotifyText(notifyText.filter((p) => p !== text));
+      }, 3000);
     });
     socket.on('boardData', ({ userss, data }) => {
       setUsers(userss);
@@ -179,7 +182,7 @@ const Board = ({ location }) => {
       <Notifications text={notifyText} />
       <header className="App-header">
         <h1 className="app-title">Collab Notes</h1>
-        <h4>Board Name:  {board}</h4>
+        <h4>Board Name: {board}</h4>
         <div className="wrapper">
           <OnlineUsers users={users} />
           <Form createPostit={createPostit} />

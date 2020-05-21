@@ -1,13 +1,15 @@
 .notify{
+  
+  right: 5px;
+  position: fixed;
   padding: 26px;
-  background-color: rgba(18, 222, 87, 0.83);
-  color: #fff;
+  background-color: rgb(6, 230, 81);
+  color: rgb(0, 0, 0);
   text-align: center;
   display: inline-block;
   border-radius: 4px;
   font-family: Helvetica, Arial, sans-serif;
-  transform: translateX(0);
-  transition: transform 4s;
-  margin-top: 35px;
+  margin-top: 11px;
 
 }
+
