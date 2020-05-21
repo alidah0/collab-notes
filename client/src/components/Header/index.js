@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Google from '../../assets/google.png';
 import './style.css';
 
 const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
@@ -18,7 +19,7 @@ const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
     <ul className="menu">
       <li>
         <Link className="link" to="/">
-          Home
+          Notes Collab
         </Link>
       </li>
       {authenticate ? (
@@ -29,7 +30,9 @@ const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
           </li>
         </div>
       ) : (
-        <li onClick={handleSignInClick}>Login</li>
+        <li onClick={handleSignInClick}>
+          <img src={Google} alt="google-sign-in" />
+        </li>
       )}
     </ul>
   );

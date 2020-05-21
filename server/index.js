@@ -37,7 +37,7 @@ io.on('connect', (socket) => {
         console.log('eroor');
       }
       socket.join(user.boardname);
-
+      console.log(rows);
       socket.broadcast
         .to(user.boardname)
         .emit('notification', `${user.nameq} has joined!`);

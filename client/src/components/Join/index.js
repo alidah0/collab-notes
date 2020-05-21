@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header';
+import design from '../../assets/svgApp.svg';
 import './style.css';
 
 const Join = () => {
@@ -74,6 +75,7 @@ const Join = () => {
             </Link>
           </div>
         )}
+        <img className="splash" src={design} alt="design-splash" />
       </div>
     </div>
   );
