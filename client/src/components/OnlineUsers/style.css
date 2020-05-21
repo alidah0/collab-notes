@@ -1,0 +1,21 @@
+.online-box{
+  display: block;
+  position: fixed;
+  background: #cac6c6;
+	border-radius: 2px;
+	box-shadow: 1px 2px 5px rgba(#000, .2);
+  width: 14%;
+  height: auto;
+  min-width: 185px;
+  min-height: 151px;
+  margin: 0 auto;
+  top: 16px;
+  left: 9px;
+  text-align: center;
+
+}
+
+.online-icon{
+  margin-right: 7px;
+  width: 15px;
+}

@@ -14,7 +14,6 @@
 }
 
 .App-header {
-  margin-top: 80px;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -23,7 +22,8 @@
 }
 
 .trash-can {
-  padding-right: 10px;
-  width: 180px;
-  margin-top: 22px;
+  position: fixed;
+  width: 143px;
+  bottom: 14px;
+  left: 21px;
 }

@@ -6,13 +6,14 @@ import Form from '../Form';
 import Notes from '../Notes';
 import EditForm from '../EditForm';
 import Trash from '../../assets/trash.svg';
+import OnlineUsers from '../OnlineUsers';
+import Notifications from '../Notifications';
 import './style.css';
 
 let socket;
 const ENDPOINT = 'http://localhost:4000/';
 
 const Board = ({ location }) => {
-  const [name, setName] = useState('');
   const [board, setBoard] = useState('');
   const [notes, setNotes] = useState([
     {
@@ -31,12 +32,11 @@ const Board = ({ location }) => {
   const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState('');
+  const [notifyText, setNotifyText] = useState('');
+
   useEffect(() => {
     const { nameq, boardname } = queryString.parse(location.search);
     socket = io(ENDPOINT);
-    setBoard(boardname);
-    setName(nameq);
-
     window.history.pushState({}, document.title, '/');
 
     socket.emit('join', { nameq, boardname }, (error) => {
@@ -45,9 +45,17 @@ const Board = ({ location }) => {
         alert(error);
       }
     });
-  }, [location.search, board]);
+    return () => {
+      socket.emit('disconnect');
+
+      socket.off();
+    };
+  }, [location.search]);
 
   useEffect(() => {
+    socket.on('notification', (text) => {
+      setNotifyText(text);
+    });
     socket.on('boardData', ({ userss, data }) => {
       setUsers(userss);
       setNotes(data);
@@ -67,7 +75,7 @@ const Board = ({ location }) => {
       // returned when a user disconnects
       socket.off();
     };
-  }, [notes, users]);
+  }, [users, notifyText]);
 
   const createPostit = (colour, title, content) => {
     const oldNotes = [...notes];
@@ -161,7 +169,6 @@ const Board = ({ location }) => {
         colour={notesToEdit.colour}
         title={notesToEdit.title}
         content={notesToEdit.content}
-        key={notesToEdit.key}
         editNote={updatePostIt}
       />
     );
@@ -169,9 +176,12 @@ const Board = ({ location }) => {
 
   return (
     <div className="App">
+      <Notifications text={notifyText} />
       <header className="App-header">
         <h1 className="app-title">Collab Notes</h1>
+        <h4>Board Name:  {board}</h4>
         <div className="wrapper">
+          <OnlineUsers users={users} />
           <Form createPostit={createPostit} />
         </div>
         <div
@@ -181,7 +191,6 @@ const Board = ({ location }) => {
         >
           {' '}
           <img className="trash-can" src={Trash} alt="trash-bin" />{' '}
-          <h4> Drag & Drop</h4>
         </div>
       </header>
       <ul>{renderNotes}</ul>
