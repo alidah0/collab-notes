@@ -50,3 +50,9 @@ input {
   text-decoration: none;
   background-color: #2980b9;
 }
+
+.splash{
+  pointer-events: none;
+  width: 30%;
+  height: auto;
+}
