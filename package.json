@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/alidah0/collab-notes#readme",
   "dependencies": {
+    "bl": "^1.2.3",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",

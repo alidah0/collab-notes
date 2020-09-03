@@ -2,14 +2,15 @@
 
 ## Table of Contents
 
-- [Application Link](#Application-Link-)
-- [Application description](#Application-description-)
-- [Application Setup](#Application-Setup-)
-- [Main Problems](#Main-Problems-)
-- [Our Solutions](#Our-Solutions-)
-- [User Stories](#User-Stories-)
-- [MVP](#MVP-)
-- [Database Schema](#Database-Schema-)
+- [Application Link](#application-link-link)
+- [Application description](#application-description-information_source)
+- [Application Setup](#main-problems-heavy_exclamation_mark)
+- [Main Problems](#main-problems-heavy_exclamation_mark)
+- [My Solutions](#my-solutions-bulb)
+- [User Stories](#user-stories)
+- [User Journey](#user-joruney-train2)
+- [MVP](#mvp-rainbow)
+- [Database Schema](#database-schema-file_cabinet)
 - [Tech-Stack](#Tech-Stack)
 
 ## Application Link :link:
@@ -93,7 +94,7 @@ DB_URI = mongodb url xxxxxxxx
 
 3- Apps have complicated steps to register and start work.
 
-## Our Solutions :bulb:
+## My Solutions :bulb:
 
 1- Easy and fast tool to make notes with many color options.
 
