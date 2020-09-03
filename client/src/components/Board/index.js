@@ -32,12 +32,13 @@ const Board = ({ location }) => {
   const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState('');
-  const [notifyText, setNotifyText] = useState([]);
+  const [notifyText, setNotifyText] = useState('');
 
   useEffect(() => {
     const { nameq, boardname } = queryString.parse(location.search);
     socket = io(ENDPOINT);
     window.history.pushState({}, document.title, '/');
+
     socket.emit('join', { nameq, boardname }, (error) => {
       setBoard(boardname);
       if (error) {
@@ -53,10 +54,7 @@ const Board = ({ location }) => {
 
   useEffect(() => {
     socket.on('notification', (text) => {
-      setNotifyText([...notifyText, text]);
-      setTimeout(() => {
-        setNotifyText(notifyText.filter((p) => p !== text));
-      }, 3000);
+      setNotifyText(text);
     });
     socket.on('boardData', ({ userss, data }) => {
       setUsers(userss);
