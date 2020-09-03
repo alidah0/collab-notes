@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header';
 import design from '../../assets/svgApp.svg';
@@ -10,6 +10,8 @@ const Join = () => {
   const [user, setUser] = useState('');
   const [profilePic, setProfilePic] = useState('');
   const [authenticate, setAuthenticate] = useState(false);
+  const [Loading, setLoading] = useState(false);
+  const [isCreated, setCreated] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,14 +28,22 @@ const Join = () => {
       });
   }, []);
   const storeBoard = async (e) => {
-    const owner = user.username;
-    if (!board) {
-      e.preventDefault();
+    if (board) {
+      setCreated(false);
+      setLoading(true);
+      const owner = user.username;
+      if (!board) {
+        e.preventDefault();
+      }
+
+      await axios
+        .post('/addboard', { board, owner })
+        // eslint-disable-next-line no-console
+        .then((res) => console.log(res.data.msg))
+        .then(() => setLoading(false))
+        .then(() => setCreated(true))
+        .catch(null);
     }
-    await axios
-      .post('/addboard', { board, owner })
-      .then((res) => console.log(res.data.msg))
-      .catch(null);
   };
 
   const handleNotAuthenticated = () => setAuthenticate(false);
@@ -62,15 +72,20 @@ const Join = () => {
                 onChange={(event) => setBoard(event.target.value)}
               />
             </div>
-
-            <Link
+            {isCreated && (
+              <Redirect
+                push
+                to={`/board?nameq=${user.username}&boardname=${board}`}
+              />
+            )}
+            <button
               onClick={storeBoard}
-              to={`/board?nameq=${user.username}&boardname=${board}`}
+              disabled={Loading}
+              className="btn"
+              type="button"
             >
-              <button className="btn" type="button">
-                Access or create
-              </button>
-            </Link>
+              Access or create
+            </button>
           </div>
         )}
         <img className="splash" src={design} alt="design-splash" />
