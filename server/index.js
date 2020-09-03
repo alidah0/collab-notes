@@ -29,15 +29,14 @@ const io = require('socket.io')(server);
 io.on('connect', (socket) => {
   socket.on('join', async ({ nameq, boardname }, callback) => {
     const { error, user } = addUser({ id: socket.id, nameq, boardname });
-
     if (error) return callback(error);
 
     await Board.find({ title: boardname }, (err, rows) => {
       if (err) {
         console.log('eroor');
       }
+
       socket.join(user.boardname);
-      console.log(rows);
       socket.broadcast
         .to(user.boardname)
         .emit('notification', `${user.nameq} has joined!`);

@@ -38,7 +38,6 @@ const Board = ({ location }) => {
     const { nameq, boardname } = queryString.parse(location.search);
     socket = io(ENDPOINT);
     window.history.pushState({}, document.title, '/');
-
     socket.emit('join', { nameq, boardname }, (error) => {
       setBoard(boardname);
       if (error) {

@@ -19,7 +19,7 @@ const Header = ({ handleNotAuthenticated, authenticate, profileIMG }) => {
     <ul className="menu">
       <li>
         <Link className="link" to="/">
-          Notes Collab
+          Collab Notes
         </Link>
       </li>
       {authenticate ? (

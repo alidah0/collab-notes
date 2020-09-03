@@ -8,7 +8,6 @@ const Board = require('../database/models/Board');
 router.post('/addboard', async (req, res) => {
   const { board, owner } = req.body;
   Board.findOne({ title: board }).then((existingBoard) => {
-    console.log('dsdsdasdsadasdsadsads');
     if (existingBoard) {
       res.json({ msg: 'Board is existed you are in' });
     } else {

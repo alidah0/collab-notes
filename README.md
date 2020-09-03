@@ -1,11 +1,17 @@
 # Collab Notes
 
+## Application Link :link:
+
+[check it out from here](#)
+
 ## Real-time collaboration board
 
-#### create board and post notes with your friends instantly in real-time
+#### an app to create boards and post notes with your your collegues instantly in real-time to make speed notes
 
 ## User Stories:
+
 user can ..
+
 - sign up with Google
 - create boards and save it in the DB.
 - access any board any time with board name

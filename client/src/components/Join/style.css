@@ -1,9 +1,9 @@
-.join-wraper{
+.join-wraper {
   padding-top: 40px;
   text-align: center;
 }
 
-.titles{
+.titles {
   color: #333;
   text-align: center;
 }
@@ -20,30 +20,29 @@ input {
   margin-bottom: 12px;
   margin-left: 20px;
   margin-right: 20px;
-  }
+}
 
-  input:focus {
-    border: 2px solid #3498DB;
-    box-shadow: none;
-    }
-    
+input:focus {
+  border: 2px solid #3498db;
+  box-shadow: none;
+}
 
-  .btn {
-    border: 2px solid transparent;
-    background: #bdbdbd;
-    color: #0d0c12;
-    font-size: 16px;
-    /* line-height: 25px; */
-    padding: 12px 0px;
-    text-decoration: none;
-    text-shadow: none;
-    border-radius: 36px;
-    box-shadow: none;
-    cursor: pointer;
-    transition: 0.25s;
-    display: block;
-    width: 250px;
-    margin: 0 auto;
+.btn {
+  border: 2px solid transparent;
+  background: #bdbdbd;
+  color: #0d0c12;
+  font-size: 16px;
+  /* line-height: 25px; */
+  padding: 12px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 36px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
 }
 
 .btn:hover {
@@ -51,8 +50,16 @@ input {
   background-color: #2980b9;
 }
 
-.splash{
+.btn:disabled {
+  cursor: wait;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.splash {
   pointer-events: none;
   width: 30%;
   height: auto;
+  padding-left: 36%;
+  margin-top: 37px;
 }
