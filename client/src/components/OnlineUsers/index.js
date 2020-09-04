@@ -4,33 +4,34 @@ import onlineIcon from '../../assets/onlineIcon.png';
 
 import './style.css';
 
-const OnlineUsers = ({ users }) => (
-  <div className="online-box">
-    {/* {console.log('users from compo', users[0])} */}
-    {users ? (
-      <div>
-        <p>Online Users:</p>
+const OnlineUsers = ({ users }) => {
+  return (
+    <div className="online-box">
+      {users ? (
         <div>
-          <p>
-            {users.map((elem) => (
-              <div key={elem.id}>
-                <img
-                  className="online-icon"
-                  src={onlineIcon}
-                  alt="online-icon"
-                />
-                {elem.nameq}
-              </div>
-            ))}
-          </p>
+          <p>Online Users:</p>
+          <div>
+            <span>
+              {users.map((elem) => (
+                <div key={elem.id}>
+                  <img
+                    className="online-icon"
+                    src={onlineIcon}
+                    alt="online-icon"
+                  />
+                  {elem.nameq}
+                </div>
+              ))}
+            </span>
+          </div>
         </div>
-      </div>
-    ) : null}
-  </div>
-);
+      ) : null}
+    </div>
+  );
+};
 
 OnlineUsers.propTypes = {
-  users: PropTypes.arrayOf.isRequired,
+  users: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default OnlineUsers;
