@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import queryString from 'query-string';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import Form from '../Form';
 import Notes from '../Notes';
 import EditForm from '../EditForm';
@@ -31,8 +31,8 @@ const Board = ({ location }) => {
   ]);
   const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
-  const [users, setUsers] = useState('');
-  const [notifyText, setNotifyText] = useState('');
+  const [users, setUsers] = useState([]);
+  const [notifyText, setNotifyText] = useState([]);
 
   useEffect(() => {
     const { nameq, boardname } = queryString.parse(location.search);
@@ -54,7 +54,10 @@ const Board = ({ location }) => {
 
   useEffect(() => {
     socket.on('notification', (text) => {
-      setNotifyText(text);
+      setNotifyText([...notifyText, text]);
+      setTimeout(() => {
+        setNotifyText(notifyText.filter((p) => p !== text));
+      }, 3000);
     });
     socket.on('boardData', ({ userss, data }) => {
       setUsers(userss);
@@ -151,10 +154,10 @@ const Board = ({ location }) => {
       {notes
         .map((p) => (
           <Notes
+            key={p.key}
             colour={p.colour}
             title={p.title}
             content={p.content}
-            key={p.key}
             onClick={() => findPostToEdit(p.key)}
             onDragStart={() => onDragStart(p.key)}
           />
@@ -176,7 +179,7 @@ const Board = ({ location }) => {
 
   return (
     <div className="App">
-      <Notifications text={notifyText} />
+      {notifyText.length > 0 && <Notifications text={notifyText} />}
       <header className="App-header">
         <h1 className="app-title">Collab Notes</h1>
         <h4>Board Name: {board}</h4>
@@ -200,7 +203,7 @@ const Board = ({ location }) => {
 };
 
 Board.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.objectOf(string).isRequired,
 };
 
 export default Board;
