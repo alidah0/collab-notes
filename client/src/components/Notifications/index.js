@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import './style.css';
 
 const Notifications = ({ text }) => {
@@ -16,11 +16,11 @@ const Notifications = ({ text }) => {
 };
 
 Notifications.defaultProps = {
-  text: '',
+  text: [],
 };
 
 Notifications.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.arrayOf(string),
 };
 
 export default Notifications;

@@ -179,7 +179,7 @@ const Board = ({ location }) => {
 
   return (
     <div className="App">
-      {notifyText.length > 0 && <Notifications text={notifyText} />}
+      {notifyText && <Notifications text={notifyText} />}
       <header className="App-header">
         <h1 className="app-title">Collab Notes</h1>
         <h4>Board Name: {board}</h4>
@@ -202,8 +202,13 @@ const Board = ({ location }) => {
   );
 };
 
+Board.defaultProps = {
+  Notifications: [],
+};
+
 Board.propTypes = {
   location: PropTypes.objectOf(string).isRequired,
+  Notifications: PropTypes.arrayOf(string),
 };
 
 export default Board;
