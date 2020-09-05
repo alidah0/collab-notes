@@ -1,4 +1,5 @@
 const express = require('express');
+const { join } = require('path');
 
 const app = express();
 
@@ -10,6 +11,10 @@ const Board = require('./database/models/Board');
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || 4000);
 require('./services/passport');
+
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 app.use(middlewares);
 
