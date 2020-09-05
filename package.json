@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint-fix": "eslint ./src --fix"
+    "start": "node server/index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "engines": {
+    "node": "12.18.2"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
   },
   "homepage": "https://github.com/alidah0/collab-notes#readme",
   "dependencies": {
-    "bl": "^1.2.3",
+    "bl": "^2.2.1",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
