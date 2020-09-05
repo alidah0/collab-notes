@@ -15,20 +15,7 @@ const ENDPOINT = 'http://localhost:4000/';
 
 const Board = ({ location }) => {
   const [board, setBoard] = useState('');
-  const [notes, setNotes] = useState([
-    {
-      title: 'think about relish',
-      content: 'mustard, tomato, fruit',
-      colour: 'pink',
-      key: '123hj$%656',
-    },
-    {
-      title: 'pat the cat',
-      content: 'scratch behind the airs and sing to him',
-      colour: 'blue',
-      key: '456k$%6lMy45',
-    },
-  ]);
+  const [notes, setNotes] = useState([]);
   const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState([]);
@@ -149,6 +136,10 @@ const Board = ({ location }) => {
     socket.emit('delete', { board, newNotesArray });
   };
 
+  const clearAllNotes = () => {
+    socket.emit('delete', { board, newNotesArray: [] });
+  };
+
   const renderNotes = (
     <div>
       {notes
@@ -192,8 +183,10 @@ const Board = ({ location }) => {
           onDrop={() => onDrop()}
           onDragOver={(e) => onDragOver(e)}
         >
-          {' '}
-          <img className="trash-can" src={Trash} alt="trash-bin" />{' '}
+          <button type="button" className="trash-btn" onClick={clearAllNotes}>
+            Clear All
+          </button>
+          <img className="trash-img" src={Trash} alt="trash-bin" />
         </div>
       </header>
       <ul>{renderNotes}</ul>
@@ -208,6 +201,7 @@ Board.defaultProps = {
 
 Board.propTypes = {
   location: PropTypes.objectOf(string).isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   Notifications: PropTypes.arrayOf(string),
 };
 
