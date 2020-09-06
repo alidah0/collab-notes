@@ -8,6 +8,8 @@ import EditForm from '../EditForm';
 import Trash from '../../assets/trash.svg';
 import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
+import LeaveBoard from '../LeaveBoard';
+
 import './style.css';
 
 let socket;
@@ -66,6 +68,10 @@ const Board = ({ location }) => {
       socket.off();
     };
   }, [users, notifyText]);
+
+  // socket.emit('disconnect');
+
+  // };
 
   const createPostit = (colour, title, content) => {
     const oldNotes = [...notes];
@@ -188,6 +194,7 @@ const Board = ({ location }) => {
           </button>
           <img className="trash-img" src={Trash} alt="trash-bin" />
         </div>
+        <LeaveBoard disconnet={() => socket.close()} />
       </header>
       <ul>{renderNotes}</ul>
       {editScreen}

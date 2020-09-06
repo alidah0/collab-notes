@@ -2,31 +2,38 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import noteValidate from '../../utils/noteValidate';
+
 import './style.css';
 
 const Form = ({ createPostit }) => {
   const [data, setData] = useState({
-    errorMessage: '',
     title: '',
     content: '',
     key: '',
   });
   const [ranCol, setRanCol] = useState('yellow');
+  const [messages, setMsg] = useState([]);
+  const [Loading, setLoading] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (data.content === '' || data.title === '') {
-      setData({ errorMessage: 'All fields are required' });
-    } else {
-      createPostit(ranCol, data.title, data.content);
-      setData({
-        colour: 'yellow',
-        title: '',
-        content: '',
-        key: '',
-        errorMessage: '',
-      });
-    }
+    const newdata = data;
+
+    noteValidate(newdata)
+      .then(() => {
+        setLoading(true);
+        setMsg([]);
+        createPostit(ranCol, data.title, data.content);
+        setData({
+          colour: 'yellow',
+          title: '',
+          content: '',
+          key: '',
+        });
+      })
+      .then(() => setLoading(false))
+      .catch(({ errors }) => setMsg(errors));
   };
   const generateColor = (e) => {
     const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -44,8 +51,13 @@ const Form = ({ createPostit }) => {
   return (
     <div>
       <form className="form">
-        <p>{data.errorMessage}</p>
+        <div className="form__messages">
+          {messages.map((msg, i) => (
+            <p key={i.toString()}>{msg}</p>
+          ))}
+        </div>
         <input
+          maxLength="31"
           type="text"
           placeholder="Title"
           value={data.title}
@@ -54,6 +66,7 @@ const Form = ({ createPostit }) => {
         />
 
         <textarea
+          maxLength="120"
           placeholder="Details about the Notes"
           value={data.content}
           name="content"
@@ -68,6 +81,7 @@ const Form = ({ createPostit }) => {
             select a color
           </div>
           <button
+            disabled={Loading}
             type="button"
             className="mainbtn"
             onClick={(e) => onSubmit(e)}
