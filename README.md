@@ -15,7 +15,7 @@
 
 ## Application Link :link:
 
-[check it out from here](#)
+[check it out from here](https://collab-notes.herokuapp.com/)
 
 ### Team members
 
