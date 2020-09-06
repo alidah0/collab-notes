@@ -6,6 +6,7 @@
   font-size: 20px;
   min-width: 50vw;
   padding: 5px;
+  padding-top: 22px;
   margin-left: 30px;
   margin-right: 5px;
   border-radius: 5px;
@@ -17,7 +18,11 @@
   margin: auto;
   margin-bottom: 12px;
   cursor: pointer;
+}
 
+.form__messages {
+  position: relative;
+  color: red;
 }
 
 input,
@@ -62,4 +67,10 @@ textarea:focus {
 .mainbtn:hover {
   text-decoration: none;
   background-color: #2980b9;
+}
+
+.mainbtn:disabled {
+  cursor: wait;
+  background-color: #cccccc;
+  color: #666666;
 }
