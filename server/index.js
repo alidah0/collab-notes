@@ -12,10 +12,6 @@ app.disable('x-powered-by');
 app.set('port', process.env.PORT || 4000);
 require('./services/passport');
 
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
-});
-
 app.use(middlewares);
 
 db
@@ -27,6 +23,12 @@ const server = app.listen(app.get('port'), () =>
   // eslint-disable-next-line no-console
   console.log(`app is listeing http://localhost:${app.get('port')}`)
 );
+
+app.use(express.static(join(__dirname, '..', 'client', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 // eslint-disable-next-line import/order
 const io = require('socket.io')(server);
