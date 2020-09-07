@@ -9,6 +9,7 @@ import Trash from '../../assets/trash.svg';
 import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
 import LeaveBoard from '../LeaveBoard';
+import Logo from '../../assets/logo.png';
 
 import './style.css';
 
@@ -178,8 +179,10 @@ const Board = ({ location }) => {
     <div className="App">
       {notifyText && <Notifications text={notifyText} />}
       <header className="App-header">
-        <h1 className="app-title">Collab Notes</h1>
-        <h4>Board Name: {board}</h4>
+        <img className="app-title" src={Logo} alt="Logo-title" />
+        <p className="App-header__board-name">
+          Board Name <br /> {!board ? 'fetching..' : board}
+        </p>
         <div className="wrapper">
           <OnlineUsers users={users} />
           <Form createPostit={createPostit} />
