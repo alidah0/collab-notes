@@ -1,5 +1,5 @@
 .menu {
-	display:flex;
+  display: flex;
   justify-content: space-around;
   align-items: center;
   list-style-type: none;
@@ -24,7 +24,7 @@
 .menu li:hover {
   color: #111;
 }
-.profile{
+.profile {
   margin-left: 10px;
   width: 20px;
   height: 20px;
@@ -33,10 +33,21 @@
   border-radius: 50%;
 }
 
-.link{
+.link {
   color: white;
 }
 
-.link:hover{
+.link:hover {
   color: #111;
+}
+
+.menu__link__logo {
+  width: 16rem;
+  margin-top: 19px;
+}
+
+@media screen and (max-width: 750px) {
+  .menu__link__logo {
+    width: 10rem;
+  }
 }

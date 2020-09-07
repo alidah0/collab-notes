@@ -1,4 +1,5 @@
 .notify {
+  top: -5px;
   right: 5px;
   position: fixed;
   padding: 26px;

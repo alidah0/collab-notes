@@ -12,18 +12,22 @@ const Join = () => {
   const [authenticate, setAuthenticate] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [isCreated, setCreated] = useState(false);
+  const [authLoad, setAuthLoad] = useState(false);
 
   useEffect(() => {
+    setAuthLoad(true);
     axios
-      .get('http://localhost:4000/login/success', {
+      .get('/login/success', {
         withCredentials: true,
       })
       .then((res) => {
         setAuthenticate(true);
         setUser(res.data.user);
         setProfilePic(res.data.user.picture);
+        setAuthLoad(false);
       })
       .catch(() => {
+        setAuthLoad(false);
         setAuthenticate(false);
       });
   }, []);
@@ -54,6 +58,7 @@ const Join = () => {
         authenticate={authenticate}
         handleNotAuthenticated={handleNotAuthenticated}
         profileIMG={profilePic}
+        loading={authLoad}
       />
       <div>
         {!authenticate ? (
@@ -62,7 +67,7 @@ const Join = () => {
           <div className="join-wraper">
             <div className="titles">
               <h1>You are in!</h1>
-              <h1>Welcome {user.username}!</h1>
+              <h1>Welcome {user && user.username}!</h1>
             </div>
             <br />
             <div>
