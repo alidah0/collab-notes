@@ -14,7 +14,7 @@ import Logo from '../../assets/logo.png';
 import './style.css';
 
 let socket;
-const ENDPOINT = 'http://localhost:4000/';
+const ENDPOINT = 'https://collab-notes.herokuapp.com/';
 
 const Board = ({ location }) => {
   const [board, setBoard] = useState('');
