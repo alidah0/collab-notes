@@ -1,15 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-// const cors = require('cors');
 const cookieSession = require('cookie-session');
 
 const middlewares = [
-  // cors({
-  //   origin: '*', // allow to server to accept request from different origin
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  //   credentials: true, // allow session cookie from browser to pass through
-  // }),
   cookieParser(),
   express.json(),
   express.urlencoded({ extended: false }),
