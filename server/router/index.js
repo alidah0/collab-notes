@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const passport = require('passport');
+const clientError = require('./clientError');
+const serverError = require('./serverError');
 
 const Board = require('../database/models/Board');
 
@@ -9,7 +11,7 @@ router.post('/addboard', async (req, res) => {
   const { board, owner } = req.body;
   Board.findOne({ title: board }).then((existingBoard) => {
     if (existingBoard) {
-      res.json({ msg: 'Board is existed you are in' });
+      res.json({ msg: 'Board is exisclientErrorted you are in' });
     } else {
       new Board({
         title: board,
@@ -61,5 +63,8 @@ router.get('/api/logout', (req, res) => {
   req.logout();
   res.redirect(process.env.CLIENT_HOME);
 });
+
+router.use(clientError);
+router.use(serverError);
 
 module.exports = router;

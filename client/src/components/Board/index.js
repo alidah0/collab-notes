@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import queryString from 'query-string';
 import PropTypes, { string } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import Form from '../Form';
 import Notes from '../Notes';
 import EditForm from '../EditForm';
@@ -14,7 +15,7 @@ import Logo from '../../assets/logo.png';
 import './style.css';
 
 let socket;
-const ENDPOINT = 'https://collab-notes.herokuapp.com/';
+const ENDPOINT = 'http://localhost:4000/';
 
 const Board = ({ location }) => {
   const [board, setBoard] = useState('');
@@ -23,9 +24,12 @@ const Board = ({ location }) => {
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState([]);
   const [notifyText, setNotifyText] = useState([]);
-
+  const history = useHistory();
   useEffect(() => {
     const { nameq, boardname } = queryString.parse(location.search);
+    if (!nameq || !boardname) {
+      history.push('/404');
+    }
     socket = io(ENDPOINT);
     window.history.pushState({}, document.title, '/');
 
@@ -40,7 +44,7 @@ const Board = ({ location }) => {
 
       socket.off();
     };
-  }, [location.search]);
+  }, [location.search, history]);
 
   useEffect(() => {
     socket.on('notification', (text) => {

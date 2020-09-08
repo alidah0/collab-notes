@@ -1,5 +1,6 @@
 const express = require('express');
 const { join } = require('path');
+const router = require('./router');
 
 const app = express();
 
@@ -18,6 +19,7 @@ db
   .on('error', () => process.exit(1));
 
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
+app.use(router);
 
 app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));

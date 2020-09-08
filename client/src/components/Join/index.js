@@ -30,6 +30,9 @@ const Join = () => {
         setAuthLoad(false);
         setAuthenticate(false);
       });
+    return () => {
+      setAuthLoad(false);
+    };
   }, []);
   const storeBoard = async (e) => {
     if (board) {

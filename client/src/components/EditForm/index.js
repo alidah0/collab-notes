@@ -18,7 +18,6 @@ const UpdateForm = ({ colour, title, content, editNote }) => {
   const style = { backgroundColor: data.colour };
   return (
     <div>
-      {/* Form */}
       <div className="form-background">
         <form className="update-form" style={style}>
           <h2>Update Note</h2>
@@ -27,6 +26,7 @@ const UpdateForm = ({ colour, title, content, editNote }) => {
           <br />
           <input
             type="text"
+            maxLength="31"
             className="textfield"
             placeholder="Title"
             value={data.title}
@@ -38,6 +38,7 @@ const UpdateForm = ({ colour, title, content, editNote }) => {
           <br />
           <textarea
             className="textfield"
+            maxLength="120"
             placeholder="content"
             name="content"
             value={data.content}
