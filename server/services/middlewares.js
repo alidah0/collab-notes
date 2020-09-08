@@ -1,16 +1,15 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const cors = require('cors');
+// const cors = require('cors');
 const cookieSession = require('cookie-session');
-const router = require('../router');
 
 const middlewares = [
-  cors({
-    origin: 'http://localhost:3000', // allow to server to accept request from different origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // allow session cookie from browser to pass through
-  }),
+  // cors({
+  //   origin: '*', // allow to server to accept request from different origin
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //   credentials: true, // allow session cookie from browser to pass through
+  // }),
   cookieParser(),
   express.json(),
   express.urlencoded({ extended: false }),
@@ -21,7 +20,6 @@ const middlewares = [
   cookieParser(),
   passport.initialize(),
   passport.session(),
-  router,
 ];
 
 module.exports = middlewares;
