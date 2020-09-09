@@ -48,6 +48,10 @@
   color: white;
 }
 
+.google-sign-btn {
+  cursor: pointer;
+}
+
 .link {
   color: white;
 }
