@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import onlineIcon from '../../assets/onlineIcon.png';
+import spinner2 from '../../assets/spinner2.svg';
 
 import './style.css';
 
@@ -9,7 +10,9 @@ const OnlineUsers = ({ users }) => (
     {users && (
       <div>
         <p>Online Users:</p>
-        {users.length === 0 || users === undefined ? <p>fetching...</p> : null}
+        {users.length === 0 || users === undefined ? (
+          <img src={spinner2} className="spinner_board" alt="loading-spinner" />
+        ) : null}
         <div>
           <span>
             {users.map((elem) => (

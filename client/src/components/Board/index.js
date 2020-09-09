@@ -11,11 +11,12 @@ import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
 import LeaveBoard from '../LeaveBoard';
 import Logo from '../../assets/logo.png';
+import spinner2 from '../../assets/spinner2.svg';
 
 import './style.css';
 
 let socket;
-const ENDPOINT = 'https://collab-notes.herokuapp.com/';
+const ENDPOINT = 'https://collab-notes.herokuapp.com//';
 
 const Board = ({ location }) => {
   const [board, setBoard] = useState('');
@@ -185,7 +186,16 @@ const Board = ({ location }) => {
       <header className="App-header">
         <img className="app-title" src={Logo} alt="Logo-title" />
         <p className="App-header__board-name">
-          Board Name <br /> {!board ? 'fetching..' : board}
+          Board Name <br />{' '}
+          {!board ? (
+            <img
+              src={spinner2}
+              className="spinner_board"
+              alt="loading-spinner"
+            />
+          ) : (
+            board
+          )}
         </p>
         <div className="wrapper">
           <OnlineUsers users={users} />

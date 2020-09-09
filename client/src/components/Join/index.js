@@ -35,13 +35,11 @@ const Join = () => {
     };
   }, []);
   const storeBoard = async (e) => {
+    e.preventDefault();
     if (board) {
       setCreated(false);
       setLoading(true);
       const owner = user.username;
-      if (!board) {
-        e.preventDefault();
-      }
 
       await axios
         .post('/addboard', { board, owner })
@@ -61,16 +59,36 @@ const Join = () => {
         authenticate={authenticate}
         handleNotAuthenticated={handleNotAuthenticated}
         profileIMG={profilePic}
+        profileName={user}
         loading={authLoad}
       />
       <div>
         {!authenticate ? (
-          <h1 className="titles">Welcome! Sign in to join a Board</h1>
+          <div className="titles">
+            <h3>Notice! Sign in to join a Board</h3>
+            <h1>Welcome to Collab Notes!</h1>
+            <p>
+              Create a new board or write the board name then access to the
+              board right away
+            </p>
+            <p>
+              You can copy the board name and share it with your friends to work
+              together on the same board
+            </p>
+          </div>
         ) : (
-          <div className="join-wraper">
+          <form className="join-wraper">
             <div className="titles">
-              <h1>You are in!</h1>
-              <h1>Welcome {user && user.username}!</h1>
+              <h3>You are in!</h3>
+              <h1>Welcome to Collab Notes!</h1>
+              <p>
+                Create a new board or write the board name then access to the
+                board right away
+              </p>
+              <p>
+                You can copy the board name and share it with your friends to
+                work together on the same board
+              </p>
             </div>
             <br />
             <div>
@@ -90,11 +108,12 @@ const Join = () => {
               onClick={storeBoard}
               disabled={Loading}
               className="btn"
-              type="button"
+              type="submit"
+              // onSubmit={storeBoard}
             >
               Access or create
             </button>
-          </div>
+          </form>
         )}
         <img className="splash" src={design} alt="design-splash" />
       </div>
