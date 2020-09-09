@@ -44,6 +44,11 @@ router.get('/login/success', (req, res) => {
       user: req.user,
       cookies: req.cookies,
     });
+  } else {
+    res.json({
+      success: false,
+      message: 'you are not authenticated',
+    });
   }
 });
 

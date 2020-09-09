@@ -10,27 +10,42 @@
   background-color: #333;
 }
 
-.menu li {
-  display: block;
+.menu li:hover {
   color: white;
-  text-align: center;
-  text-decoration: none;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: xx-large;
-  cursor: pointer;
 }
 
-.menu li:hover {
-  color: #111;
+.logout-btn {
+  margin-left: 10px;
+  align-self: center;
+  cursor: pointer;
+  color: #f9a148;
+}
+
+.menu__google {
+  display: flex;
+  font-size: 24px;
+}
+
+.menu__google__loading {
+  width: 18px;
+}
+
+.menu__account {
+  display: flex;
 }
 .profile {
+  border: 1.5px solid white;
   margin-left: 10px;
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  padding: 2px;
+  margin-right: 7px;
+  margin-top: 15px;
+  height: 52px;
   border-radius: 50%;
+  pointer-events: none;
+}
+
+.google_name {
+  font-size: 27px;
+  color: white;
 }
 
 .link {
@@ -42,6 +57,7 @@
 }
 
 .menu__link__logo {
+  pointer-events: none;
   width: 16rem;
   margin-top: 19px;
 }

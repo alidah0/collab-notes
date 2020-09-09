@@ -5,6 +5,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Google from '../../assets/google.png';
 import Logo from '../../assets/logo.png';
+import spinner from '../../assets/spinner.svg';
 
 import './style.css';
 
@@ -30,16 +31,24 @@ const Header = ({
         </Link>
       </li>
       {authenticate ? (
-        <div className="wrapp">
-          <li onClick={handleLogoutClick}>
+        <div className="menu__account">
+          <img className="profile" src={profileIMG} alt="profile" />
+          <p className="google_name">Ali</p>
+          <li className="logout-btn" onClick={handleLogoutClick}>
             Logout
-            <img className="profile" src={profileIMG} alt="profile" />
           </li>
         </div>
       ) : (
         <li onClick={handleSignInClick}>
           {loading ? (
-            <p>Signing in...</p>
+            <div className="menu__google">
+              <p>Signing in..</p>
+              <img
+                className="menu__google__loading"
+                src={spinner}
+                alt="loading-spinner"
+              />
+            </div>
           ) : (
             <img src={Google} alt="google-sign-in" />
           )}

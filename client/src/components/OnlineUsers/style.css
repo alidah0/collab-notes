@@ -17,5 +17,9 @@
 
 .online-icon {
   margin-right: 7px;
-  width: 15px;
+  width: 11px;
+}
+
+.spinner_board {
+  width: 22px;
 }
