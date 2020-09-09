@@ -11,7 +11,7 @@ router.post('/addboard', async (req, res) => {
   const { board, owner } = req.body;
   Board.findOne({ title: board }).then((existingBoard) => {
     if (existingBoard) {
-      res.json({ msg: 'Board is exisclientErrorted you are in' });
+      res.json({ msg: 'Board is existed you are in' });
     } else {
       new Board({
         title: board,

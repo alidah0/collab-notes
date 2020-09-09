@@ -59,7 +59,7 @@ const Join = () => {
         authenticate={authenticate}
         handleNotAuthenticated={handleNotAuthenticated}
         profileIMG={profilePic}
-        profileName={user}
+        profileName={user ? user.username : ''}
         loading={authLoad}
       />
       <div>
@@ -109,7 +109,6 @@ const Join = () => {
               disabled={Loading}
               className="btn"
               type="submit"
-              // onSubmit={storeBoard}
             >
               Access or create
             </button>

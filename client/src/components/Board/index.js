@@ -16,7 +16,7 @@ import spinner2 from '../../assets/spinner2.svg';
 import './style.css';
 
 let socket;
-const ENDPOINT = 'https://collab-notes.herokuapp.com//';
+const ENDPOINT = 'https://collab-notes.herokuapp.com/';
 
 const Board = ({ location }) => {
   const [board, setBoard] = useState('');

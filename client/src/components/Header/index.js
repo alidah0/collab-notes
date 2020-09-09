@@ -13,6 +13,7 @@ const Header = ({
   handleNotAuthenticated,
   authenticate,
   profileIMG,
+  profileName,
   loading,
 }) => {
   const handleLogoutClick = () => {
@@ -33,7 +34,7 @@ const Header = ({
       {authenticate ? (
         <div className="menu__account">
           <img className="profile" src={profileIMG} alt="profile" />
-          <p className="google_name">Ali</p>
+          <p className="google_name">{profileName}</p>
           <li className="logout-btn" onClick={handleLogoutClick}>
             Logout
           </li>
@@ -50,7 +51,11 @@ const Header = ({
               />
             </div>
           ) : (
-            <img src={Google} alt="google-sign-in" />
+            <img
+              className="google-sign-btn"
+              src={Google}
+              alt="google-sign-in"
+            />
           )}
         </li>
       )}
@@ -62,6 +67,7 @@ Header.propTypes = {
   authenticate: PropTypes.bool.isRequired,
   handleNotAuthenticated: PropTypes.func.isRequired,
   profileIMG: PropTypes.string.isRequired,
+  profileName: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
