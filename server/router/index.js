@@ -69,7 +69,7 @@ router.get('/api/logout', (req, res) => {
   res.redirect(process.env.CLIENT_HOME);
 });
 
-router.use(clientError);
+// router.use(clientError);
 router.use(serverError);
 
 module.exports = router;
