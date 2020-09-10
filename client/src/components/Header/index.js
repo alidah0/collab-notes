@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Google from '../../assets/google.png';
 import Logo from '../../assets/logo.png';
 import spinner from '../../assets/spinner.svg';
@@ -27,9 +26,7 @@ const Header = ({
   return (
     <ul className="menu">
       <li>
-        <Link className="link" to="/">
-          <img className="menu__link__logo" src={Logo} alt="logo-title" />
-        </Link>
+        <img className="menu__link__logo" src={Logo} alt="logo-title" />
       </li>
       {authenticate ? (
         <div className="menu__account">

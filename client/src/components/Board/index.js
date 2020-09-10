@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import queryString from 'query-string';
 import PropTypes, { string } from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Form from '../Form';
@@ -10,7 +9,6 @@ import Trash from '../../assets/trash.svg';
 import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
 import LeaveBoard from '../LeaveBoard';
-import Logo from '../../assets/logo.png';
 import spinner2 from '../../assets/spinner2.svg';
 
 import './style.css';
@@ -18,7 +16,7 @@ import './style.css';
 let socket;
 const ENDPOINT = 'https://collab-notes.herokuapp.com/';
 
-const Board = ({ location }) => {
+const Board = ({ nameq, boardname, leave }) => {
   const [board, setBoard] = useState('');
   const [notes, setNotes] = useState([]);
   const [editForm, setEditForm] = useState(false);
@@ -26,18 +24,17 @@ const Board = ({ location }) => {
   const [users, setUsers] = useState([]);
   const [notifyText, setNotifyText] = useState([]);
   const history = useHistory();
+  const { location } = window;
   useEffect(() => {
-    const { nameq, boardname } = queryString.parse(location.search);
     if (!nameq || !boardname) {
-      history.push('/404');
+      history.push('/');
     }
     socket = io(ENDPOINT);
-    window.history.pushState({}, document.title, '/');
 
     socket.emit('join', { nameq, boardname }, (error) => {
       setBoard(boardname);
       if (error) {
-        alert(error);
+        console.log(error);
       }
     });
     return () => {
@@ -45,7 +42,7 @@ const Board = ({ location }) => {
 
       socket.off();
     };
-  }, [location.search, history]);
+  }, [location.search, history, nameq, boardname]);
 
   useEffect(() => {
     socket.on('notification', (text) => {
@@ -74,10 +71,6 @@ const Board = ({ location }) => {
       socket.off();
     };
   }, [users, notifyText]);
-
-  // socket.emit('disconnect');
-
-  // };
 
   const createPostit = (colour, title, content) => {
     const oldNotes = [...notes];
@@ -184,7 +177,6 @@ const Board = ({ location }) => {
     <div className="App">
       {notifyText && <Notifications text={notifyText} />}
       <header className="App-header">
-        <img className="app-title" src={Logo} alt="Logo-title" />
         <p className="App-header__board-name">
           Board Name <br />{' '}
           {!board ? (
@@ -211,7 +203,7 @@ const Board = ({ location }) => {
           </button>
           <img className="trash-img" src={Trash} alt="trash-bin" />
         </div>
-        <LeaveBoard disconnet={() => socket.close()} />
+        <LeaveBoard disconnet={() => socket.close()} leave={leave} />
       </header>
       <ul>{renderNotes}</ul>
       {editScreen}
@@ -224,9 +216,11 @@ Board.defaultProps = {
 };
 
 Board.propTypes = {
-  location: PropTypes.objectOf(string).isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   Notifications: PropTypes.arrayOf(string),
+  nameq: PropTypes.string.isRequired,
+  boardname: PropTypes.string.isRequired,
+  leave: PropTypes.func.isRequired,
 };
 
 export default Board;
