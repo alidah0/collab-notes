@@ -16,10 +16,6 @@
   font-size: calc(10px + 2vmin);
 }
 
-.app-title {
-  width: 21rem;
-  pointer-events: none;
-}
 .App-header__board-name {
   display: block;
   position: fixed;
@@ -30,7 +26,7 @@
   min-width: 185px;
   min-height: 53px;
   margin: 0 auto;
-  top: 11px;
+  top: 6.5rem;
   left: 9px;
   text-align: center;
   font-size: 15px;
