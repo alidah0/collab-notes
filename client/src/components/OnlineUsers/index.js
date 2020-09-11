@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import onlineIcon from '../../assets/onlineIcon.png';
-import spinner2 from '../../assets/spinner2.svg';
+import spinner2 from '../../assets/main_spinner.svg';
 
 import './style.css';
 

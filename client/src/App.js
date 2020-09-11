@@ -4,7 +4,8 @@ import axios from 'axios';
 import Board from './components/Board';
 import Join from './components/Join';
 import NotFound from './components/NotFound';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
+import spinner from './assets/main_spinner.svg';
 
 import './App.css';
 
@@ -38,10 +39,12 @@ function App() {
   return (
     <>
       {authLoad ? (
-        <h1 style={{ textAlign: 'center', marginTop: '400px' }}>Loading...</h1>
+        <div className="app__loading">
+          <img className="app__loading__svg" src={spinner} alt="loading-icon" />
+        </div>
       ) : (
         <div>
-          <Header
+          <Navbar
             authenticate={authenticate}
             handleNotAuthenticated={() => setAuthenticate(false)}
             profileIMG={profilePic}
