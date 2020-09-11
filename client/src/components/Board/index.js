@@ -9,7 +9,7 @@ import Trash from '../../assets/trash.svg';
 import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
 import LeaveBoard from '../LeaveBoard';
-import spinner2 from '../../assets/spinner2.svg';
+import spinner2 from '../../assets/main_spinner.svg';
 
 import './style.css';
 

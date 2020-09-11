@@ -1,7 +1,19 @@
-body{
+body {
   background-color: rgb(228, 228, 228);
 }
 
-a, u {
+a,
+u {
   text-decoration: none;
+}
+
+.app__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12rem;
+}
+
+.app__loading__svg {
+  width: 80px;
 }

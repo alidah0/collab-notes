@@ -92,10 +92,14 @@ const Join = ({ authenticate, user }) => {
   );
 };
 
+Join.defaultProps = {
+  user: '',
+};
+
 Join.propTypes = {
   authenticate: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  user: PropTypes.any.isRequired,
+  user: PropTypes.any,
 };
 
 export default Join;

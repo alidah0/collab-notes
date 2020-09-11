@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const passport = require('passport');
-const clientError = require('./clientError');
+// const clientError = require('./clientError');
 const serverError = require('./serverError');
 
 const Board = require('../database/models/Board');
