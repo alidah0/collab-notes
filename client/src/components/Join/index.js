@@ -10,6 +10,7 @@ const Join = ({ authenticate, user }) => {
   const [board, setBoard] = useState('');
   const [Loading, setLoading] = useState(false);
   const [isCreated, setCreated] = useState(false);
+  const [error, setError] = useState('');
   const storeBoard = async (e) => {
     e.preventDefault();
     if (board) {
@@ -21,9 +22,15 @@ const Join = ({ authenticate, user }) => {
         .post('/addboard', { board, owner })
         // eslint-disable-next-line no-console
         .then((res) => console.log(res.data.msg))
-        .then(() => setLoading(false))
+        .then(() => {
+          setError('');
+          setLoading(false);
+        })
         .then(() => setCreated(true))
-        .catch(null);
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
     }
   };
 
@@ -67,22 +74,23 @@ const Join = ({ authenticate, user }) => {
                 </p>
               </div>
               <br />
-              <div>
+              <div className="error-msg">{error}</div>
+              <div className="access-box">
                 <input
                   placeholder="Enter the Board name"
                   type="text"
                   onChange={(event) => setBoard(event.target.value)}
                 />
-              </div>
 
-              <button
-                onClick={storeBoard}
-                disabled={Loading}
-                className="btn"
-                type="submit"
-              >
-                Access or create
-              </button>
+                <button
+                  onClick={storeBoard}
+                  disabled={Loading}
+                  className="btn"
+                  type="submit"
+                >
+                  Access or create
+                </button>
+              </div>
             </form>
           )}
           <img className="splash" src={design} alt="design-splash" />
@@ -98,8 +106,13 @@ Join.defaultProps = {
 
 Join.propTypes = {
   authenticate: PropTypes.bool.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  user: PropTypes.any,
+  user: PropTypes.shape({
+    picture: PropTypes.string,
+    userId: PropTypes.string,
+    username: PropTypes.string,
+    __v: PropTypes.number,
+    _id: PropTypes.string,
+  }),
 };
 
 export default Join;

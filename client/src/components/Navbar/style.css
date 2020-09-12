@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
   list-style-type: none;
   height: 60px;
   margin: 0;
@@ -9,10 +12,7 @@
   overflow: hidden;
   background-color: #333;
   box-shadow: 0 1px 2px rgb(0 0 0);
-}
-
-.menu li:hover {
-  color: white;
+  z-index: 1;
 }
 
 .menu__google {
@@ -49,18 +49,31 @@
 
 .menu_arrow__downArrow {
   width: 12px;
-  filter: brightness(200%);
+  transition: 0.25s;
+}
+.menu_arrow__upArrow {
+  width: 12px;
+  transform: rotate(180deg);
+  transition: 0.25s;
 }
 
 .menu__account__modal {
   padding: 6px 0 0 9px;
-  position: absolute;
+  position: fixed;
   background-color: #bdbdbd;
   width: 151px;
   height: 34px;
   top: 63px;
   right: 46px;
   box-shadow: 0 1px 6px rgb(0 0 0 / 35%);
+  cursor: pointer;
+  z-index: 2;
+  transition: 0.25s;
+  border-radius: 1.5px;
+}
+
+.menu__account__modal:hover {
+  background-color: #2980b9;
 }
 
 .hide {

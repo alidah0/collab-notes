@@ -56,7 +56,12 @@ function App() {
               <Route
                 exact
                 path="/"
-                render={() => <Join authenticate={authenticate} user={user} />}
+                render={() => (
+                  <Join
+                    authenticate={authenticate}
+                    user={!user ? null : user}
+                  />
+                )}
               />
               <Route path="/board" render={() => <Board />} />
               <Route path="/404" render={() => <NotFound />} />
@@ -65,7 +70,6 @@ function App() {
           </BrowserRouter>
         </div>
       )}
-      )
     </>
   );
 }

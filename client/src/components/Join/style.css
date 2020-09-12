@@ -1,11 +1,27 @@
 .join-wraper {
-  padding-top: 40px;
+  /* padding-top: 40px; */
   text-align: center;
 }
 
 .titles {
   color: #333;
   text-align: center;
+  margin-top: 5rem;
+}
+
+.error-msg {
+  color: red;
+  font-size: 22px;
+}
+
+.access-box {
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+  padding-top: 22px;
+  background-color: #a5afb6;
+  padding-bottom: 22px;
+  border-radius: 2.5px;
 }
 
 input {

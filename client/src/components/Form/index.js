@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import noteValidate from '../../utils/noteValidate';
@@ -77,6 +75,7 @@ const Form = ({ createPostit }) => {
             className="randColor"
             onClick={generateColor}
             style={{ backgroundColor: 'yellow' }}
+            role="presentation"
           >
             select a color
           </div>

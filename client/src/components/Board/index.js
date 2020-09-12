@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Form from '../Form';
 import Notes from '../Notes';
@@ -211,13 +211,7 @@ const Board = ({ nameq, boardname, leave }) => {
   );
 };
 
-Board.defaultProps = {
-  Notifications: [],
-};
-
 Board.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  Notifications: PropTypes.arrayOf(string),
   nameq: PropTypes.string.isRequired,
   boardname: PropTypes.string.isRequired,
   leave: PropTypes.func.isRequired,
