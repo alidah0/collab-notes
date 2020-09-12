@@ -47,12 +47,25 @@
 }
 
 .notfound__btn {
-  position: relative;
-  width: 20rem;
-  height: 3rem;
-  font-size: 1rem;
-  margin-top: 1rem;
+  border: 2px solid transparent;
+  background: #bdbdbd;
+  color: #0d0c12;
+  font-size: 16px;
+  padding: 12px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 36px;
+  box-shadow: none;
   cursor: pointer;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.notfound__btn:hover {
+  background-color: #2980b9;
 }
 
 @media only screen and (max-width: 767px) {

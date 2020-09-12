@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: rgb(228, 228, 228); /* background-color: #0d0c12; */
+  background-color: rgb(228, 228, 228);
   display: flex;
   justify-content: center;
   text-align: center;
@@ -26,7 +26,7 @@
   min-width: 185px;
   min-height: 53px;
   margin: 0 auto;
-  top: 6.5rem;
+  top: 4rem;
   left: 9px;
   text-align: center;
   font-size: 15px;

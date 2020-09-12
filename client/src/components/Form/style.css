@@ -4,10 +4,10 @@
   flex-direction: column;
   text-align: center;
   font-size: 20px;
-  min-width: 41vw;
-  padding: 5px;
+  min-width: 32vw;
+  padding: 20px;
   padding-top: 22px;
-  margin-top: 1rem;
+  margin-top: 5rem;
   margin-left: 30px;
   margin-right: 5px;
   border-radius: 5px;
@@ -52,7 +52,6 @@ textarea:focus {
   background: #bdbdbd;
   color: #0d0c12;
   font-size: 16px;
-  /* line-height: 25px; */
   padding: 12px 0px;
   text-decoration: none;
   text-shadow: none;
@@ -74,4 +73,10 @@ textarea:focus {
   cursor: wait;
   background-color: #cccccc;
   color: #666666;
+}
+
+@media screen and (max-width: 750px) {
+  .form {
+    margin-top: 1rem;
+  }
 }

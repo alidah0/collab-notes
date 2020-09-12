@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Google from '../../assets/google.png';
@@ -45,25 +43,32 @@ const Navbar = ({
             alt="profile"
           />
           <p className="google_name">{profileName}</p>
-          <li
+          <div
             className="menu_arrow"
             onClick={() => (modal ? setModal(false) : setModal(true))}
+            role="presentation"
           >
             <img
-              className="menu_arrow__downArrow"
+              className={
+                modal ? 'menu_arrow__upArrow' : 'menu_arrow__downArrow'
+              }
               src={downArrow}
               alt="down-arrow"
             />
-          </li>
-          <div className={modal ? 'menu__account__modal' : 'hide'}>
-            <li className="logout-btn" onClick={handleLogoutClick}>
+          </div>
+          <div
+            onClick={handleLogoutClick}
+            className={modal ? 'menu__account__modal' : 'hide'}
+            role="presentation"
+          >
+            <div className="logout-btn">
               <img className="logout-btn__svg" src={logout} alt="logout-icon" />
               <p>Logout</p>
-            </li>
+            </div>
           </div>
         </div>
       ) : (
-        <li onClick={handleSignInClick}>
+        <div role="presentation" onClick={handleSignInClick}>
           {loading ? (
             <div className="menu__google">
               <p>Signing in..</p>
@@ -80,7 +85,7 @@ const Navbar = ({
               alt="google-sign-in"
             />
           )}
-        </li>
+        </div>
       )}
     </ul>
   );
