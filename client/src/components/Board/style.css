@@ -16,6 +16,33 @@
   font-size: calc(10px + 2vmin);
 }
 
+.App__toolbar {
+  position: fixed;
+  width: 82px;
+  background-color: #cac6c6;
+  height: 100vh;
+  top: 3.9rem;
+  box-shadow: 0 1px 2px rgb(173 168 168);
+  z-index: 1;
+}
+
+.App__toolabr__elem {
+  cursor: pointer;
+  padding: 12px 0 1px 0;
+  border-style: none none solid;
+  border-color: #979797;
+  border-width: 0.5px;
+  font-size: 12px;
+}
+
+.App__toolabr__elem:hover {
+  background-color: #2b92c2;
+}
+
+.App__toolabr__img {
+  width: 27px;
+}
+
 .App-header__board-name {
   display: block;
   position: fixed;

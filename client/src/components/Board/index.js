@@ -10,6 +10,8 @@ import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
 import LeaveBoard from '../LeaveBoard';
 import spinner2 from '../../assets/main_spinner.svg';
+import addNote from '../../assets/addNote.svg';
+import LeaveSVG from '../../assets/logout.svg';
 
 import './style.css';
 
@@ -176,6 +178,21 @@ const Board = ({ nameq, boardname, leave }) => {
   return (
     <div className="App">
       {notifyText && <Notifications text={notifyText} />}
+      <div className="App__toolbar">
+        <div className="App__toolabr__elem">
+          <img className="App__toolabr__img" src={Trash} alt="delete" />
+          <p>Clear All</p>
+        </div>
+        <div className="App__toolabr__elem">
+          <img className="App__toolabr__img" src={addNote} alt="add-Note" />
+          <p>Add Note</p>
+        </div>
+        <div className="App__toolabr__elem">
+          <img className="App__toolabr__img" src={LeaveSVG} alt="add-Note" />
+          <p>Leave Board</p>
+        </div>
+      </div>
+
       <header className="App-header">
         <p className="App-header__board-name">
           Board Name <br />{' '}
