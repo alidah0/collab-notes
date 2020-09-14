@@ -48,7 +48,7 @@ input:focus {
   background: #bdbdbd;
   color: #0d0c12;
   font-size: 16px;
-  /* line-height: 25px; */
+  outline: none;
   padding: 12px 0px;
   text-decoration: none;
   text-shadow: none;

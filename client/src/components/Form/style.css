@@ -1,18 +1,40 @@
 .form {
+  position: fixed;
+  left: 3.5rem;
+  top: 4rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
   font-size: 20px;
-  min-width: 32vw;
+  min-width: 35rem;
   padding: 20px;
   padding-top: 22px;
-  margin-top: 5rem;
   margin-left: 30px;
   margin-right: 5px;
   border-radius: 5px;
+  box-shadow: 8px 8px 23px -2px #00000063;
   background-color: #a5afb6;
 }
+
+.form__exit {
+  align-self: flex-end;
+  color: #0d0c12;
+  width: 30px;
+  font-size: 17px;
+  height: 28px;
+  margin-bottom: 22px;
+  box-shadow: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.form__exit:hover {
+  background-color: #2980b9;
+}
+
 .randColor {
   width: 160px;
   height: 40px;
@@ -62,6 +84,7 @@ textarea:focus {
   display: block;
   width: 250px;
   margin: 0 auto;
+  outline: none;
 }
 
 .mainbtn:hover {
@@ -77,6 +100,6 @@ textarea:focus {
 
 @media screen and (max-width: 750px) {
   .form {
-    margin-top: 1rem;
+    min-width: 35vh;
   }
 }
