@@ -4,7 +4,7 @@ import noteValidate from '../../utils/noteValidate';
 
 import './style.css';
 
-const Form = ({ createPostit }) => {
+const Form = ({ createPostit, isClicked }) => {
   const [data, setData] = useState({
     title: '',
     content: '',
@@ -49,6 +49,13 @@ const Form = ({ createPostit }) => {
   return (
     <div>
       <form className="form">
+        <button
+          type="button"
+          className="form__exit"
+          onClick={() => isClicked()}
+        >
+          x
+        </button>
         <div className="form__messages">
           {messages.map((msg, i) => (
             <p key={i.toString()}>{msg}</p>
@@ -95,6 +102,7 @@ const Form = ({ createPostit }) => {
 
 Form.propTypes = {
   createPostit: PropTypes.func.isRequired,
+  isClicked: PropTypes.func.isRequired,
 };
 
 export default Form;

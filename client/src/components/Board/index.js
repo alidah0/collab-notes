@@ -5,10 +5,10 @@ import { useHistory } from 'react-router-dom';
 import Form from '../Form';
 import Notes from '../Notes';
 import EditForm from '../EditForm';
-import Trash from '../../assets/trash.svg';
+import Toolbar from '../Toolbar';
+import Trash from '../../assets/trash2.svg';
 import OnlineUsers from '../OnlineUsers';
 import Notifications from '../Notifications';
-import LeaveBoard from '../LeaveBoard';
 import spinner2 from '../../assets/main_spinner.svg';
 
 import './style.css';
@@ -23,6 +23,8 @@ const Board = ({ nameq, boardname, leave }) => {
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState([]);
   const [notifyText, setNotifyText] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [showOnlineUsers, setOnlineUsers] = useState(false);
   const history = useHistory();
   const { location } = window;
   useEffect(() => {
@@ -67,7 +69,6 @@ const Board = ({ nameq, boardname, leave }) => {
     });
     return () => {
       socket.emit('disconnect');
-      // returned when a user disconnects
       socket.off();
     };
   }, [users, notifyText]);
@@ -145,6 +146,11 @@ const Board = ({ nameq, boardname, leave }) => {
     socket.emit('delete', { board, newNotesArray: [] });
   };
 
+  const leaveBoard = () => {
+    leave();
+    socket.close();
+  };
+
   const renderNotes = (
     <div>
       {notes
@@ -176,9 +182,15 @@ const Board = ({ nameq, boardname, leave }) => {
   return (
     <div className="App">
       {notifyText && <Notifications text={notifyText} />}
+      <Toolbar
+        usersLength={users.length}
+        clearAllNotes={clearAllNotes}
+        leaveBoard={leaveBoard}
+        isFormClicked={() => setShowForm(!showForm)}
+        isOnlineClicked={() => setOnlineUsers(!showOnlineUsers)}
+      />
       <header className="App-header">
         <p className="App-header__board-name">
-          Board Name <br />{' '}
           {!board ? (
             <img
               src={spinner2}
@@ -190,22 +202,23 @@ const Board = ({ nameq, boardname, leave }) => {
           )}
         </p>
         <div className="wrapper">
-          <OnlineUsers users={users} />
-          <Form createPostit={createPostit} />
+          {showOnlineUsers ? <OnlineUsers users={users} /> : null}
+          {showForm ? (
+            <Form
+              isClicked={() => setShowForm(false)}
+              createPostit={createPostit}
+            />
+          ) : null}
         </div>
         <div
           className="trash-can"
           onDrop={() => onDrop()}
           onDragOver={(e) => onDragOver(e)}
         >
-          <button type="button" className="trash-btn" onClick={clearAllNotes}>
-            Clear All
-          </button>
           <img className="trash-img" src={Trash} alt="trash-bin" />
         </div>
-        <LeaveBoard disconnet={() => socket.close()} leave={leave} />
       </header>
-      <ul>{renderNotes}</ul>
+      <ul className="App__notes">{renderNotes}</ul>
       {editScreen}
     </div>
   );
