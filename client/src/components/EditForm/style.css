@@ -13,18 +13,49 @@
 .update-form {
   position: fixed;
   background-color: pink;
+  width: 100%;
+  height: 100%;
   min-height: 300px;
-  max-height: 362px;
-  left: 15%;
-  right: 15%;
-  top: 20%;
-  bottom: 60vw;
-  height: 362px;
+  max-height: 35rem;
+  max-width: 36rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.textfield {
+  width: 22rem;
+}
 
+.update-form__btn {
+  border: 2px solid transparent;
+  background: #bdbdbd;
+  color: #0d0c12;
+  font-size: 16px;
+  padding: 12px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 36px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: 0.25s;
+  display: block;
+  width: 156px;
+  margin: 1rem;
+  outline: none;
+}
 
-.mainbtn:hover {
+.update-form__btn:hover {
   text-decoration: none;
   background-color: #2980b9;
+}
+
+@media screen and (max-width: 750px) {
+  .update-form {
+    max-height: 27rem;
+    max-width: 25rem;
+  }
 }

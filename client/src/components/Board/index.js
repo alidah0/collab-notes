@@ -175,6 +175,7 @@ const Board = ({ nameq, boardname, leave }) => {
         title={notesToEdit.title}
         content={notesToEdit.content}
         editNote={updatePostIt}
+        closeForm={() => setEditForm(false)}
       />
     );
   }
