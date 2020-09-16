@@ -19,6 +19,7 @@ const ENDPOINT = 'https://collab-notes.herokuapp.com/';
 const Board = ({ nameq, boardname, leave }) => {
   const [board, setBoard] = useState('');
   const [notes, setNotes] = useState([]);
+  const [backupNotes, setBackupNotes] = useState([]);
   const [editForm, setEditForm] = useState(false);
   const [notesToEdit, setNotesToEdit] = useState(undefined);
   const [users, setUsers] = useState([]);
@@ -87,6 +88,7 @@ const Board = ({ nameq, boardname, leave }) => {
   const findPostToEdit = (key) => {
     const newNotesArray = [];
     const oldNotes = [...notes];
+    setBackupNotes(oldNotes);
     let editedNote = {};
 
     oldNotes.forEach((note) => {
@@ -151,6 +153,11 @@ const Board = ({ nameq, boardname, leave }) => {
     socket.close();
   };
 
+  const CloseForm = () => {
+    setNotes(backupNotes);
+    setEditForm(false);
+  };
+
   const renderNotes = (
     <div>
       {notes
@@ -175,7 +182,7 @@ const Board = ({ nameq, boardname, leave }) => {
         title={notesToEdit.title}
         content={notesToEdit.content}
         editNote={updatePostIt}
-        closeForm={() => setEditForm(false)}
+        closeForm={() => CloseForm()}
       />
     );
   }
