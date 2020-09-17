@@ -16,7 +16,7 @@ const Join = ({ authenticate, user }) => {
     if (board) {
       setCreated(false);
       setLoading(true);
-      const owner = user.username;
+      const owner = user;
 
       await axios
         .post('/addboard', { board, owner })
@@ -37,18 +37,16 @@ const Join = ({ authenticate, user }) => {
   return (
     <div>
       {isCreated ? (
-        user && (
-          <Board
-            leave={() => setCreated(false)}
-            nameq={user.username}
-            boardname={board}
-          />
-        )
+        <Board leave={() => setCreated(false)} nameq={user} boardname={board} />
       ) : (
         <div>
-          {!authenticate ? (
+          <form className="join-wraper">
             <div className="titles">
-              <h3>Notice! Sign in to join a Board</h3>
+              {!authenticate ? (
+                <h3>Notice! Sign in to join a Board</h3>
+              ) : (
+                <h3>You are in!</h3>
+              )}
               <h1>Welcome to Collab Notes!</h1>
               <p>
                 Create a new board or write the board name then access to the
@@ -59,40 +57,25 @@ const Join = ({ authenticate, user }) => {
                 work together on the same board
               </p>
             </div>
-          ) : (
-            <form className="join-wraper">
-              <div className="titles">
-                <h3>You are in!</h3>
-                <h1>Welcome to Collab Notes!</h1>
-                <p>
-                  Create a new board or write the board name then access to the
-                  board right away
-                </p>
-                <p>
-                  You can copy the board name and share it with your friends to
-                  work together on the same board
-                </p>
-              </div>
-              <br />
-              <div className="error-msg">{error}</div>
-              <div className="access-box">
-                <input
-                  placeholder="Enter the Board name"
-                  type="text"
-                  onChange={(event) => setBoard(event.target.value)}
-                />
+            <br />
+            <div className="error-msg">{error}</div>
+            <div className="access-box">
+              <input
+                placeholder="Enter the Board name"
+                type="text"
+                onChange={(event) => setBoard(event.target.value)}
+              />
 
-                <button
-                  onClick={storeBoard}
-                  disabled={Loading}
-                  className="btn"
-                  type="submit"
-                >
-                  Access or create
-                </button>
-              </div>
-            </form>
-          )}
+              <button
+                onClick={storeBoard}
+                disabled={Loading}
+                className="btn"
+                type="submit"
+              >
+                Access or create
+              </button>
+            </div>
+          </form>
           <img className="splash" src={design} alt="design-splash" />
         </div>
       )}
@@ -100,19 +83,9 @@ const Join = ({ authenticate, user }) => {
   );
 };
 
-Join.defaultProps = {
-  user: '',
-};
-
 Join.propTypes = {
   authenticate: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    picture: PropTypes.string,
-    userId: PropTypes.string,
-    username: PropTypes.string,
-    __v: PropTypes.number,
-    _id: PropTypes.string,
-  }),
+  user: PropTypes.string.isRequired,
 };
 
 export default Join;

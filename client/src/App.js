@@ -59,7 +59,7 @@ function App() {
                 render={() => (
                   <Join
                     authenticate={authenticate}
-                    user={!user ? null : user}
+                    user={!user ? 'Guest' : user.username}
                   />
                 )}
               />

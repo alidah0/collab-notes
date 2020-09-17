@@ -29,7 +29,8 @@
   min-width: 185px;
   height: 53px;
   font-size: 28px;
-  margin-top: 5rem;
+  box-shadow: 0 8px 10px -2px #999;
+  margin-top: 3rem;
   padding: 30px 13px 9px 13px;
 }
 
@@ -44,6 +45,7 @@
 @media screen and (max-width: 750px) {
   .App-header__board-name {
     min-width: 100px;
+    margin-left: 6rem;
   }
   .trash-img {
     width: 73px;
