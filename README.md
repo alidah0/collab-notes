@@ -23,7 +23,7 @@
 
 ## Application description :information_source:
 
-![](https://i.imgur.com/1d5aAQS.png)
+![](https://i.imgur.com/9YnBFvH.png)
 
 An app to help people to make quick post-it notes to help them organize their ideas and what they want to share instantly in real-time, the users will create boards and post notes and all users on the board can see all the notes right away.
 
@@ -100,13 +100,14 @@ DB_URI = mongodb url xxxxxxxx
 
 2- Real-time changes without refreshing the page.
 
-3- This app provides one-click to register and one-click to start working.
+3- This app provides one-click to register and one-click to start working or start working as a guest user.
 
 ## User Stories:
 
 user can ..
 
-- sign in with Google
+- sign in with Google.
+- access any board as a guest user without signing in.
 - create boards and save them on his own board.
 - access any board any time by board name
 - post notes to the board in real-time
@@ -114,6 +115,9 @@ user can ..
 - choose different colors by random color generators.
 - edit the notes after the posting.
 - drag the note to the trash bin to delete it.
+- leave the board and switch to another.
+- see who's online in the board.
+- clear all the notes in the board.
 - more to come ...
 
 ## User Joruney: :train2:
@@ -122,7 +126,7 @@ The user will open the app, then he will click sign in by google, then he will a
 
 ## MVP :rainbow:
 
-![](https://i.imgur.com/BwNyymf.gif)
+![](https://i.imgur.com/viOjj6Y.gif)
 
 ## Database Schema :file_cabinet:
 
@@ -137,3 +141,4 @@ The user will open the app, then he will click sign in by google, then he will a
 - React.js
 - React Hooks
 - Socket.io
+- yup

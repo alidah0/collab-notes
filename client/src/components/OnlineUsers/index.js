@@ -9,7 +9,7 @@ const OnlineUsers = ({ users }) => (
   <div className="online-box">
     {users && (
       <div>
-        <p>Online Users:</p>
+        <p>Who&apos;s online:</p>
         {users.length === 0 || users === undefined ? (
           <img src={spinner2} className="spinner_board" alt="loading-spinner" />
         ) : null}
