@@ -43,7 +43,10 @@ const Join = ({ authenticate, user }) => {
           <form className="join-wraper">
             <div className="titles">
               {!authenticate ? (
-                <h3>Notice! Sign in to join a Board</h3>
+                <>
+                  <h3>Notice! Sign in to join the boards with your name</h3>
+                  <p>you are now identified as a Guest</p>
+                </>
               ) : (
                 <h3>You are in!</h3>
               )}
@@ -54,13 +57,14 @@ const Join = ({ authenticate, user }) => {
               </p>
               <p>
                 You can copy the board name and share it with your friends to
-                work together on the same board
+                work together collaborating on the same board
               </p>
             </div>
-            <br />
+            <p>Enter : &apos; Tech Board &apos; a Baord for testing</p>
             <div className="error-msg">{error}</div>
             <div className="access-box">
               <input
+                maxLength="51"
                 placeholder="Enter the Board name"
                 type="text"
                 onChange={(event) => setBoard(event.target.value)}
