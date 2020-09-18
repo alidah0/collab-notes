@@ -126,7 +126,7 @@ The user will open the app, then he will click sign in by google, then he will a
 
 ## MVP :rainbow:
 
-![](https://i.imgur.com/viOjj6Y.gif)
+![](https://i.imgur.com/OJTxWVt.gif)
 
 ## Database Schema :file_cabinet:
 
