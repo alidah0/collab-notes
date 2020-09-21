@@ -22,6 +22,7 @@ const Join = ({ authenticate, user }) => {
         .post('/addboard', { board, owner })
         // eslint-disable-next-line no-console
         .then((res) => console.log(res.data.msg))
+
         .then(() => {
           setError('');
           setLoading(false);
@@ -68,6 +69,7 @@ const Join = ({ authenticate, user }) => {
                 placeholder="Enter the Board name"
                 type="text"
                 onChange={(event) => setBoard(event.target.value)}
+                value={board}
               />
 
               <button
